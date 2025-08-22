@@ -10,6 +10,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -O2")
 
 # Find required packages
 find_package(Threads REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(NCURSES REQUIRED ncurses)
 
 # Source files
 set(SOURCES
@@ -21,16 +23,18 @@ set(SOURCES
     src/ball.cpp
     src/paddle.cpp
     src/gameobject.cpp
+    src/ncurses.cpp
 )
 
 # Include directories
 include_directories(src/headers)
+include_directories(${NCURSES_INCLUDE_DIRS})
 
 # Create executable
 add_executable(pong ${SOURCES})
 
 # Link libraries
-target_link_libraries(pong Threads::Threads)
+target_link_libraries(pong Threads::Threads ${NCURSES_LIBRARIES})
 
 # Install target
 install(TARGETS pong DESTINATION bin)
@@ -46,3 +50,4 @@ message(STATUS "Pong Game Configuration:")
 message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
 message(STATUS "  Build Type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "  Install Prefix: ${CMAKE_INSTALL_PREFIX}")
+message(STATUS "  NCurses Found: ${NCURSES_FOUND}")

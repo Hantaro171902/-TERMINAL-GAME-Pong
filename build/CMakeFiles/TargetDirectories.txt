@@ -1,0 +1,7 @@
+/mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles/pong.dir
+/mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles/edit_cache.dir
+/mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles/rebuild_cache.dir
+/mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles/list_install_components.dir
+/mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles/install.dir
+/mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles/install/local.dir
+/mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles/install/strip.dir

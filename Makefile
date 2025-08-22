@@ -4,7 +4,7 @@
 CXX = g++
 CXXFLAGS = -std=c++17 -Wall -Wextra -O2 -g
 INCLUDES = -Isrc/headers
-LIBS = -lpthread
+LIBS = -lpthread -lncurses
 
 # Directories
 SRCDIR = src

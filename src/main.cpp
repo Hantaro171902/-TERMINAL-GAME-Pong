@@ -1,3 +1,8 @@
+/*
+ * main.cpp
+ * Program entry point
+ */
+
 #include "headers/game.hpp"
 #include <iostream>
 #include <cstdlib>
