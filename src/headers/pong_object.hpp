@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
-#include "color.hpp"   // make sure you have this, or remove setColor if unused
+#include "color.hpp"    // TextColor, setTextColor(), resetTextColor()
+#include "ultils.hpp"   // move_cursor(), random_range()
 
 struct XYPosition {
     float x;
@@ -9,29 +10,42 @@ struct XYPosition {
 
 class PongObject {
 public:
-    PongObject(int windowX, int windowY, int length, int thickness, std::string symbol = "█")
-        : _windowLimitX(windowX),
-          _windowLimitY(windowY),
-          _length(length),
-          _thickness(thickness),
-          _symbol(symbol) {
-        _position = { windowX / 2.0f, windowY / 2.0f };
-    }
+    // length = height in rows, thickness = width in columns
+    // symbol is a UTF-8 string (e.g. "█" or "●")
+    PongObject(int windowX, int windowY, int length, int thickness, const std::string& symbol = "█");
 
     virtual ~PongObject() {}
 
-    XYPosition getPosition() const { return _position; }
-    void setPosition(float x, float y) { _position = {x, y}; }
+    // --- geometry/state ---
+    XYPosition getPosition() const;
+    void setPosition(float x, float y);
+    void setWindowLimits(int maxX, int maxY);
 
-    int getLength() const { return _length; }
-    int getThickness() const { return _thickness; }
-    std::string getSymbol() const { return _symbol; }
+    int getLength()     const;
+    int getThickness()  const;
+    std::string getSymbol() const;
+    void setSymbol(const std::string& s);
 
-    // void setColor(Color color); // enable only if you have Color defined
+    // --- visuals ---
+    void setColor(TextColor c);
+    TextColor getColor() const;
+    void switchColor();               // pick a random ANSI color
+
+    // --- rendering ---
+    virtual void draw()  const;       // prints the object
+    virtual void clear() const;       // erases the object
+
+    // --- helpers ---
+    void clampToBounds();             // keeps within 1..(limit-2) box
+
+    // optional per-frame physics (no-op by default)
+    virtual void update(float /*deltaTime*/) {}
 
 protected:
-    int _windowLimitX, _windowLimitY;
-    XYPosition _position;
-    int _length, _thickness;
-    std::string _symbol;
+    int _windowLimitX, _windowLimitY; // terminal bounds in cols/rows
+    XYPosition _position;             // top-left anchor (column=x, row=y)
+    int _length;                      // rows (height)
+    int _thickness;                   // cols (width)
+    std::string _symbol;              // printed glyph
+    TextColor _color = WHITE;
 };

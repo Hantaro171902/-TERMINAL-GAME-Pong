@@ -1,70 +1,89 @@
 #include "game.hpp"
+#include "utils.hpp"
 #include <iostream>
+#include <chrono>
+#include <thread>
 
-using namespace std;
-
-Game::Game(int width, int height, int paddleSize, bool rightWall)
-    : _windowSizeX(width),
-      _windowSizeY(height),
-      _wallThickness(1),   // much smaller than SDL version
-      _score(0),
-      _running(true),
-      _isRightWall(rightWall) 
-{
-    ball = std::make_shared<Ball>(width/2, height/2, 1, 1); // starting in center
-    paddle = std::make_shared<Paddle>(2, height/2, paddleSize, 1); // left paddle
+Game::Game(int w, int h)
+    : width(w), height(h),
+      player1(2, h / 2 - 2, 4, h),  // left paddle
+      player2(w - 3, h / 2 - 2, 4, h),  // right paddle
+      ball(w / 2, h / 2, w, h) {
+    running = true;
 }
 
 void Game::run() {
-    while (_running) {
+    while (running) {
         processInput();
         update();
         render();
-        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // ~20 fps
+        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // 20 fps
     }
 }
 
 void Game::processInput() {
-    // Non-blocking key press check
-    if (kbhit()) {
-        char ch = getchar();
-        if (ch == 'q') _running = false; // quit
-        if (ch == 'w') paddle->moveUp();
-        if (ch == 's') paddle->moveDown(_windowSizeY);
+    if (_kbhit()) {
+        char ch = _getch();
+        switch (ch) {
+            // Player 1: W/S
+            case 'w': player1.moveUp(); break;
+            case 's': player1.moveDown(); break;
+
+            // Player 2: Up/Down arrows
+            case 72: player2.moveUp(); break;    // up arrow
+            case 80: player2.moveDown(); break;  // down arrow
+
+            // Quit
+            case 'q': running = false; break;
+        }
     }
 }
 
 void Game::update() {
-    ball->update(_windowSizeX, _windowSizeY, *paddle);
+    ball.move();
 
-    if (ball->outOfBounds(_windowSizeX, _windowSizeY)) {
-        _score -= 10;
-        ball->reset(_windowSizeX/2, _windowSizeY/2);
+    // Ball collision with paddles
+    if (ball.getX() == player1.getX() + 1) {
+        if (ball.getY() >= player1.getY() && ball.getY() <= player1.getY() + player1.getLength()) {
+            ball.bounceHorizontal();
+        }
     }
-    if (ball->bounced()) {
-        _score += 1;
+
+    if (ball.getX() == player2.getX() - 1) {
+        if (ball.getY() >= player2.getY() && ball.getY() <= player2.getY() + player2.getLength()) {
+            ball.bounceHorizontal();
+        }
+    }
+
+    // Ball goes out of bounds → reset
+    if (ball.getX() <= 0 || ball.getX() >= width - 1) {
+        resetBall();
     }
 }
 
 void Game::render() {
-    clearScreen();
+    system("cls"); // Windows clear screen
 
-    // Draw walls
-    for (int x = 0; x < _windowSizeX; x++) {
-        gotoxy(x, 0); std::cout << "-";
-        gotoxy(x, _windowSizeY-1); std::cout << "-";
-    }
-    if (_isRightWall) {
-        for (int y = 0; y < _windowSizeY; y++) {
-            gotoxy(_windowSizeX-1, y); std::cout << "|";
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            if (y == 0 || y == height - 1) {
+                std::cout << "#"; // top/bottom walls
+            } else if (x == 0 || x == width - 1) {
+                std::cout << "#"; // left/right walls
+            } else if (x == ball.getX() && y == ball.getY()) {
+                std::cout << "O"; // ball
+            } else if (x == player1.getX() && y >= player1.getY() && y < player1.getY() + player1.getLength()) {
+                std::cout << "|"; // player 1 paddle
+            } else if (x == player2.getX() && y >= player2.getY() && y < player2.getY() + player2.getLength()) {
+                std::cout << "|"; // player 2 paddle
+            } else {
+                std::cout << " ";
+            }
         }
+        std::cout << "\n";
     }
+}
 
-    // Draw paddle and ball
-    paddle->draw();
-    ball->draw();
-
-    // Score
-    gotoxy(0, _windowSizeY);
-    std::cout << "Score: " << _score << std::flush;
+void Game::resetBall() {
+    ball = Ball(width / 2, height / 2, width, height);
 }

@@ -20,6 +20,8 @@ set(SOURCES
     src/ball.cpp
     src/paddle.cpp
     src/pong_object.cpp
+    src/cursor_input.cpp
+    src/utils.cpp
     # src/pong.cpp
 )
 
@@ -28,6 +30,8 @@ set(HEADERS
     src/headers/ball.hpp
     src/headers/paddle.hpp
     src/headers/pong_object.hpp
+    src/headers/cursor_input.hpp
+    src/headers/utils.hpp
     # src/headers/pong.hpp
 )
 

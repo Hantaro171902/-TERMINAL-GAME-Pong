@@ -153,6 +153,30 @@ src/ball.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/ball.cpp.s
 .PHONY : src/ball.cpp.s
 
+src/cursor_input.o: src/cursor_input.cpp.o
+.PHONY : src/cursor_input.o
+
+# target to build an object file
+src/cursor_input.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/cursor_input.cpp.o
+.PHONY : src/cursor_input.cpp.o
+
+src/cursor_input.i: src/cursor_input.cpp.i
+.PHONY : src/cursor_input.i
+
+# target to preprocess a source file
+src/cursor_input.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/cursor_input.cpp.i
+.PHONY : src/cursor_input.cpp.i
+
+src/cursor_input.s: src/cursor_input.cpp.s
+.PHONY : src/cursor_input.s
+
+# target to generate assembly for a file
+src/cursor_input.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/cursor_input.cpp.s
+.PHONY : src/cursor_input.cpp.s
+
 src/game.o: src/game.cpp.o
 .PHONY : src/game.o
 
@@ -249,6 +273,30 @@ src/pong_object.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/pong_object.cpp.s
 .PHONY : src/pong_object.cpp.s
 
+src/utils.o: src/utils.cpp.o
+.PHONY : src/utils.o
+
+# target to build an object file
+src/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/utils.cpp.o
+.PHONY : src/utils.cpp.o
+
+src/utils.i: src/utils.cpp.i
+.PHONY : src/utils.i
+
+# target to preprocess a source file
+src/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/utils.cpp.i
+.PHONY : src/utils.cpp.i
+
+src/utils.s: src/utils.cpp.s
+.PHONY : src/utils.s
+
+# target to generate assembly for a file
+src/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/utils.cpp.s
+.PHONY : src/utils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -261,6 +309,9 @@ help:
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"
+	@echo "... src/cursor_input.o"
+	@echo "... src/cursor_input.i"
+	@echo "... src/cursor_input.s"
 	@echo "... src/game.o"
 	@echo "... src/game.i"
 	@echo "... src/game.s"
@@ -273,6 +324,9 @@ help:
 	@echo "... src/pong_object.o"
 	@echo "... src/pong_object.i"
 	@echo "... src/pong_object.s"
+	@echo "... src/utils.o"
+	@echo "... src/utils.i"
+	@echo "... src/utils.s"
 .PHONY : help
 
 

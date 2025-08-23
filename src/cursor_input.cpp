@@ -1,17 +1,13 @@
 #include "cursor_input.hpp"
-#include "ultils.hpp"
-#include <termios.h>
-#include <unistd.h>
-#include <fcntl.h>
 
 InputKey getInputKey() {
     termios oldt{}, newt{};
     tcgetattr(STDIN_FILENO, &oldt);
     newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO); // Disable canonical mode and echo
+    newt.c_lflag &= ~(ICANON | ECHO); // Disable canonical mode & echo
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
-    // Set non-blocking
+    // Non-blocking
     int oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
     fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
 
@@ -19,23 +15,26 @@ InputKey getInputKey() {
     char ch;
 
     if (read(STDIN_FILENO, &ch, 1) == 1) {
-        if (ch == '\033') { // Escape sequence
+        if (ch == '\033') { // Escape sequence → arrow keys
             char seq[2];
             if (read(STDIN_FILENO, &seq[0], 1) == 1 &&
                 read(STDIN_FILENO, &seq[1], 1) == 1) {
                 switch (seq[1]) {
-                    case 'A': key = InputKey::UP; break;
-                    case 'B': key = InputKey::DOWN; break;
-                    case 'C': key = InputKey::RIGHT; break;
-                    case 'D': key = InputKey::LEFT; break;
+                    case 'A': key = InputKey::P2_UP; break;    // ↑
+                    case 'B': key = InputKey::P2_DOWN; break;  // ↓
+                    case 'C': key = InputKey::P2_RIGHT; break; // →
+                    case 'D': key = InputKey::P2_LEFT; break;  // ←
                 }
             }
         } else {
             switch (ch) {
-                case 'w': case 'W': key = InputKey::UP; break;
-                case 's': case 'S': key = InputKey::DOWN; break;
-                case 'a': case 'A': key = InputKey::LEFT; break;
-                case 'd': case 'D': key = InputKey::RIGHT; break;
+                // Player 1 (WASD)
+                case 'w': case 'W': key = InputKey::P1_UP; break;
+                case 's': case 'S': key = InputKey::P1_DOWN; break;
+                case 'a': case 'A': key = InputKey::P1_LEFT; break;
+                case 'd': case 'D': key = InputKey::P1_RIGHT; break;
+
+                // General controls
                 case '\n': key = InputKey::ENTER; break;
                 case 27:   key = InputKey::ESC; break; // Escape
                 case 'q': case 'Q': key = InputKey::Q; break;
@@ -47,22 +46,9 @@ InputKey getInputKey() {
         }
     }
 
-    // Restore settings
+    // Restore terminal settings
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
     fcntl(STDIN_FILENO, F_SETFL, oldf);
 
     return key;
 }
-
-// void playSound(SoundEffect effect) {
-// #ifdef _WIN32
-//     // Not implemented on Windows in this file
-// #else
-//     switch (effect) {
-//         case CLICK:   system("aplay -q assets/sounds/click.wav &"); break;
-//         case VICTORY: system("aplay -q assets/sounds/victory.wav &"); break;
-//         case DEFEAT:  system("aplay -q assets/sounds/defeat.wav &"); break;
-//     }
-// #endif
-// }
-

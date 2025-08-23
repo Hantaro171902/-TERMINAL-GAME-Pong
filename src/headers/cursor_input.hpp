@@ -1,33 +1,30 @@
 #pragma once
-
-// Input control keys
-// const int KEY_UP = 65;    // Arrow Up
-// const int KEY_DOWN = 66;  // Arrow Down
-// const int KEY_LEFT = 68;  // Arrow Left
-// const int KEY_RIGHT = 67; // Arrow Right
-// const int KEY_ENTER = 10; // Enter key
-// const int KEY_ESCAPE = 27; // Escape key
+#include <termios.h>
+#include <unistd.h>
+#include <fcntl.h>
 
 enum class InputKey {
     NONE,
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
+
+    // Player 1 (WASD)
+    P1_UP,
+    P1_DOWN,
+    P1_LEFT,
+    P1_RIGHT,
+
+    // Player 2 (Arrow Keys)
+    P2_UP,
+    P2_DOWN,
+    P2_LEFT,
+    P2_RIGHT,
+
+    // General controls
     ENTER,
     ESC,
-    Q, // Quit to menu
-    R,  // Restart game
-    LEFT_BRACKET, // '[' key
-    RIGHT_BRACKET // ']' key
+    Q, // Quit
+    R, // Restart
+    LEFT_BRACKET,
+    RIGHT_BRACKET
 };
 
-// Play sound effects
-// enum SoundEffect {
-//     CLICK,
-//     VICTORY,
-//     DEFEAT
-// };
-
-// void playSound(SoundEffect effect);
 InputKey getInputKey();

@@ -2,7 +2,6 @@
  * game.hpp
  * Main game controller
  */
-
 #pragma once
 
 #include <iostream>
@@ -11,25 +10,25 @@
 #include <chrono>
 #include "ball.hpp"
 #include "paddle.hpp"
-#include "ultils.hpp"
+#include "cursor_input.hpp"
+#include "utils.hpp"
+
 
 class Game {
 public:
-    Game(int width, int height, int paddleSize, bool rightWall);
+    Game(int width, int height);
+    void run();
 
-    void run();      // main game loop
+private:
+    int width, height;
+    bool running;
+
+    Paddle player1;
+    Paddle player2;
+    Ball ball;
+
     void processInput();
     void update();
     void render();
-
-private:
-    int _windowSizeX;
-    int _windowSizeY;
-    int _wallThickness;
-    long _score;
-    bool _running;
-    bool _isRightWall;
-
-    std::shared_ptr<Ball> ball;
-    std::shared_ptr<Paddle> paddle;
+    void resetBall();
 };
