@@ -4,11 +4,13 @@
 #include <chrono>
 #include <thread>
 
+using namespace std;
+
 Game::Game(int w, int h)
     : width(w), height(h),
-      player1(w, h, 4, 1, "█"),        // left paddle (length=4, width=1)
-      player2(w, h, 4, 1, "█"),        // right paddle
-      ball(w, h, 1, 1, "●")            // ball (1x1)
+      player1(w, h, 4, 1, BLOCK_FULL),        // left paddle (length=4, width=1)
+      player2(w, h, 4, 1, BLOCK_FULL),        // right paddle
+      ball(w, h, 1, 1, BALL_SOLID)            // ball (1x1)
 {
     player1.setPosition(2, h / 2 - 2);
     player2.setPosition(w - 3, h / 2 - 2);
@@ -21,25 +23,31 @@ void Game::run() {
         processInput();
         update();
         render();
-        std::this_thread::sleep_for(std::chrono::milliseconds(50)); // ~20 fps
+        this_thread::sleep_for(chrono::milliseconds(50)); // ~20 fps
     }
 }
 
 void Game::processInput() {
-    if (kbhit()) {                      // ✅ utils.hpp
-        char ch = getch();              // ✅ utils.hpp
-        switch (ch) {
-            // Player 1: W/S
-            case 'w': player1.moveUp(); break;
-            case 's': player1.moveDown(); break;
-
-            // Player 2: Up/Down arrows
-            case 72: player2.moveUp(); break;    // up arrow
-            case 80: player2.moveDown(); break;  // down arrow
-
-            // Quit
-            case 'q': running = false; break;
-        }
+    InputKey key = getInputKey();
+    switch (key) {
+        case InputKey::P1_UP:
+            player1.moveUp();
+            break;
+        case InputKey::P1_DOWN:
+            player1.moveDown();
+            break;
+        case InputKey::P2_UP:
+            player2.moveUp();
+            break;
+        case InputKey::P2_DOWN:
+            player2.moveDown();
+            break;
+        case InputKey::Q:
+        case InputKey::ESC:
+            running = false;
+            break;
+        default:
+            break;
     }
 }
 
@@ -73,7 +81,7 @@ void Game::update() {
 }
 
 void Game::render() {
-    system("clear"); // use "cls" on Windows, "clear" on Linux/mac
+    clearTerminal();
 
     XYPosition ballPos = ball.getPosition();
     XYPosition p1Pos = player1.getPosition();
@@ -82,26 +90,26 @@ void Game::render() {
     for (int y = 0; y < height; y++) {
         for (int x = 0; x < width; x++) {
             if (y == 0 || y == height - 1) {
-                std::cout << "#"; // top/bottom walls
+                cout << "#"; // top/bottom walls
             } else if (x == 0 || x == width - 1) {
-                std::cout << "#"; // left/right walls
+                cout << "#"; // left/right walls
             } else if (x == (int)ballPos.x && y == (int)ballPos.y) {
-                std::cout << "O"; // ball
+                cout << "O"; // ball
             } else if (x == (int)p1Pos.x &&
                        y >= (int)p1Pos.y && y < (int)p1Pos.y + player1.getLength()) {
-                std::cout << "|"; // player 1 paddle
+                cout << "|"; // player 1 paddle
             } else if (x == (int)p2Pos.x &&
                        y >= (int)p2Pos.y && y < (int)p2Pos.y + player2.getLength()) {
-                std::cout << "|"; // player 2 paddle
+                cout << "|"; // player 2 paddle
             } else {
-                std::cout << " ";
+                cout << " ";
             }
         }
-        std::cout << "\n";
+        cout << "\n";
     }
 }
 
 void Game::resetBall() {
-    ball = Ball(width, height, 1, 1, "●");
+    ball = Ball(width, height, 1, 1, BALL_SOLID);
     ball.setPosition(width / 2, height / 2);
 }
