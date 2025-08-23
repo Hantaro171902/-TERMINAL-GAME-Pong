@@ -1,5 +1,5 @@
 // ultils.cpp
-#include "ultils.hpp"
+#include "utils.hpp"
 #include <cstdlib>
 #include <ctime>
 #include <iomanip>
@@ -21,11 +21,11 @@ string formatTime(int totalSeconds) {
     return oss.str();
 }
 
-void play_sound(const string& path) {
-    // Linux: use aplay or similar command
-    string command = "aplay -q " + path + " &";
-    system(command.c_str());
-}
+// void play_sound(const string& path) {
+//     // Linux: use aplay or similar command
+//     string command = "aplay -q " + path + " &";
+//     system(command.c_str());
+// }
 
 void clearScreen() {
     cout << "\033[2J\033[1;1H"; // Clear screen + move cursor to top-left
@@ -97,10 +97,10 @@ bool kbhit() {
     return false;
 }
 
-void console_size(int width, int height) {
-    // Linux: usually can't resize terminal from code safely
-    // Maybe print a warning or leave empty
-}
+// void console_size(int width, int height) {
+//     // Linux: usually can't resize terminal from code safely
+//     // Maybe print a warning or leave empty
+// }
 
 void sleep_ms(int ms) {
     usleep(ms * 1000);

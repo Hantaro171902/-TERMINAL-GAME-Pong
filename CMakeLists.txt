@@ -22,7 +22,7 @@ set(SOURCES
     src/pong_object.cpp
     src/cursor_input.cpp
     src/utils.cpp
-    # src/pong.cpp
+    src/color.cpp
 )
 
 set(HEADERS
@@ -32,6 +32,7 @@ set(HEADERS
     src/headers/pong_object.hpp
     src/headers/cursor_input.hpp
     src/headers/utils.hpp
+    src/headers/color.hpp
     # src/headers/pong.hpp
 )
 

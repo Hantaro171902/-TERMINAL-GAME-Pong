@@ -13,22 +13,24 @@
 #include "cursor_input.hpp"
 #include "utils.hpp"
 
-
 class Game {
 public:
     Game(int width, int height);
     void run();
 
 private:
-    int width, height;
-    bool running;
-
-    Paddle player1;
-    Paddle player2;
-    Ball ball;
-
+    // Core game loop pieces
     void processInput();
     void update();
     void render();
     void resetBall();
+
+    // Game objects
+    Paddle player1;
+    Paddle player2;
+    Ball ball;
+
+    // Settings
+    int width, height;
+    bool running;
 };

@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include "color.hpp"    // TextColor, setTextColor(), resetTextColor()
-#include "ultils.hpp"   // move_cursor(), random_range()
+#include "utils.hpp"   // move_cursor(), random_range()
 
 struct XYPosition {
     float x;

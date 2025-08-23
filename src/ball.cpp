@@ -1,19 +1,29 @@
 #include "ball.hpp"
 #include <iostream>
 
-Ball::Ball(int startX, int startY, int bWidth, int bHeight)
-    : x(startX), y(startY), dx(1), dy(1), boardWidth(bWidth), boardHeight(bHeight) {}
+using namespace std;
+
+Ball::Ball(int startX, int startY, int bWidth, int bHeight, const std::string& symbol)
+    : PongObject(startX, startY, bWidth, bHeight), dx(1), dy(1), symbol(symbol) {}
 
 void Ball::draw() const {
-    std::cout << "\033[" << y << ";" << x << "H" << "o";
+    auto pos = getPosition();
+    cout << "\033[" << static_cast<int>(pos.y) << ";" << static_cast<int>(pos.x) << "H" << getSymbol();
 }
 
-void Ball::update() {
-    x += dx;
-    y += dy;
+void Ball::update(float deltaTime) {
+    auto pos = getPosition();
+    setPosition(pos.x + dx, pos.y + dy);
 
-    if (y <= 1 || y >= boardHeight) {
+    pos = getPosition();
+    // bounce off top/bottom edges
+    if (pos.y <= 1 || pos.y >= _windowLimitY - 1) {  
         dy = -dy;
+    }
+
+    // bounce off left/right edges (optional, for testing)
+    if (pos.x <= 1 || pos.x >= _windowLimitX - 1) {
+        dx = -dx;
     }
 }
 
@@ -24,6 +34,3 @@ void Ball::bounceVertical() {
 void Ball::bounceHorizontal() {
     dy = -dy;
 }
-
-int Ball::getX() const { return x; }
-int Ball::getY() const { return y; }

@@ -1,30 +1,32 @@
 #include "paddle.hpp"
+#include <iostream>
 
+using namespace std;
 
-Paddle::Paddle(int startX, int startY, int h, int bHeight)
-    : x(startX), y(startY), height(h), boardHeight(bHeight) {}
+Paddle::Paddle(int startX, int startY, int h, int bHeight, const std::string& symbol)
+    : PongObject(startX, startY, h, bHeight, symbol), height(h) {}
 
 void Paddle::draw() const {
+    auto pos = getPosition();
     for (int i = 0; i < height; i++) {
-        std::cout << "\033[" << (y + i) << ";" << x << "H" << "|";
+        cout << "\033[" << static_cast<int>(pos.y + i) << ";" << static_cast<int>(pos.x) << "H" << getSymbol();
     }
 }
 
+void Paddle::update(float deltaTime) {
+    // Paddles don’t automatically update — player input or AI controls them
+    // If you want to move with velocity, add vy as a member and use setPosition
+}
+
 void Paddle::moveUp() {
-    if (y > 1) y--;
+    auto pos = getPosition();
+    if (pos.y > 1) setPosition(pos.x, pos.y - 1);
 }
 
 void Paddle::moveDown() {
-    if (y + height < boardHeight) y++;
+    auto pos = getPosition();
+    // Use _windowLimitY from PongObject, or add a getter if needed
+    if (pos.y + height < _windowLimitY) setPosition(pos.x, pos.y + 1);
 }
 
-int Paddle::getX() const { return x; }
-int Paddle::getY() const { return y; }
 int Paddle::getHeight() const { return height; }
-
-// void Paddle::clear() const {
-//     for (int i = -length/2; i <= length/2; i++) {
-//         gotoxy(x, y + i);
-//         std::cout << " ";
-//     }
-// }

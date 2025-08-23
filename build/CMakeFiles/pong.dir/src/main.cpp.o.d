@@ -185,8 +185,10 @@ CMakeFiles/Pong.dir/src/main.cpp.o: \
  /usr/include/c++/13/ctime /usr/include/c++/13/bits/parse_numbers.h \
  /usr/include/c++/13/chrono \
  /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/ball.hpp \
- /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/paddle.hpp \
+ /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/pong_object.hpp \
+ /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/color.hpp \
  /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/utils.hpp \
+ /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/paddle.hpp \
  /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/cursor_input.hpp \
  /usr/include/termios.h /usr/include/x86_64-linux-gnu/bits/termios.h \
  /usr/include/x86_64-linux-gnu/bits/termios-struct.h \
