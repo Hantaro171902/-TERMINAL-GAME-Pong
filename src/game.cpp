@@ -126,14 +126,14 @@ void Game::render() {
     // Draw game objects
     if (m_world->getBall()) {
         Vector2D ballPos = m_world->getBall()->getPosition();
-        m_screen->drawChar(static_cast<int>(ballPos.x), static_cast<int>(ballPos.y), '●');
+    m_screen->drawChar(static_cast<int>(ballPos.x), static_cast<int>(ballPos.y), "●");
     }
     
     if (m_world->getPaddle1()) {
         Vector2D paddlePos = m_world->getPaddle1()->getPosition();
         for (int i = 0; i < m_world->getPaddle1()->getHeight(); ++i) {
             m_screen->drawChar(static_cast<int>(paddlePos.x), 
-                              static_cast<int>(paddlePos.y) + i, '█');
+                              static_cast<int>(paddlePos.y) + i, "█");
         }
     }
     
@@ -141,7 +141,7 @@ void Game::render() {
         Vector2D paddlePos = m_world->getPaddle2()->getPosition();
         for (int i = 0; i < m_world->getPaddle2()->getHeight(); ++i) {
             m_screen->drawChar(static_cast<int>(paddlePos.x), 
-                              static_cast<int>(paddlePos.y) + i, '█');
+                              static_cast<int>(paddlePos.y) + i, "█");
         }
     }
     
