@@ -1,52 +1,37 @@
-/*
- * pong_object.hpp
- * Base class for all game entities
- */
-
 #pragma once
-
-#include "color.hpp"
-#include "ultils.hpp"
-#include "cursor_input.hpp"
-#include <vector>
 #include <string>
+#include "color.hpp"   // make sure you have this, or remove setColor if unused
 
 struct XYPosition {
-    int x;
-    int y;
-}
+    float x;
+    float y;
+};
 
 class PongObject {
-private:
-    int _windowLimitX, _windowLimitY;
-    XYPosition _position;
-    int _length, _thickness;
-    char _symbol;
-    TextColor _color;
-
 public:
-    PongObject(int windowX, int windowY, int length, int thickness, char symbol = BLOCK_FULL)
+    PongObject(int windowX, int windowY, int length, int thickness, std::string symbol = "█")
         : _windowLimitX(windowX),
           _windowLimitY(windowY),
           _length(length),
           _thickness(thickness),
-          _symbol(symbol),
-          _color(WHITE) {
-        _position = { windowX / 2, windowY / 2 };
+          _symbol(symbol) {
+        _position = { windowX / 2.0f, windowY / 2.0f };
     }
 
-    void setPosition(int x, int y);
-    XYPosition getPosition() const;
+    virtual ~PongObject() {}
 
-    void setWindowLimits(int maxX, int maxY);
+    XYPosition getPosition() const { return _position; }
+    void setPosition(float x, float y) { _position = {x, y}; }
 
-    void setColor(Color color);
-    void switchColor();
+    int getLength() const { return _length; }
+    int getThickness() const { return _thickness; }
+    std::string getSymbol() const { return _symbol; }
 
-    void draw() const;
-    void clear() const;
+    // void setColor(Color color); // enable only if you have Color defined
 
-    int getLength() const;
-    int getThickness() const;
-
+protected:
+    int _windowLimitX, _windowLimitY;
+    XYPosition _position;
+    int _length, _thickness;
+    std::string _symbol;
 };

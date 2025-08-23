@@ -17,37 +17,24 @@ pkg_check_modules(NCURSES REQUIRED ncurses)
 set(SOURCES
     src/main.cpp
     src/game.cpp
-    src/world.cpp
-    src/screen.cpp
-    src/inputhandler.cpp
     src/ball.cpp
     src/paddle.cpp
-    src/gameobject.cpp
-    src/ncurses.cpp
+    src/pong_object.cpp
+    # src/pong.cpp
 )
 
-# Include directories
-include_directories(src/headers)
-include_directories(${NCURSES_INCLUDE_DIRS})
-
-# Create executable
-add_executable(pong ${SOURCES})
-
-# Link libraries
-target_link_libraries(pong Threads::Threads ${NCURSES_LIBRARIES})
-
-# Install target
-install(TARGETS pong DESTINATION bin)
-
-# Set properties
-set_target_properties(pong PROPERTIES
-    OUTPUT_NAME "pong"
-    RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+set(HEADERS
+    src/headers/game.hpp
+    src/headers/ball.hpp
+    src/headers/paddle.hpp
+    src/headers/pong_object.hpp
+    # src/headers/pong.hpp
 )
 
-# Print configuration info
-message(STATUS "Pong Game Configuration:")
-message(STATUS "  C++ Standard: ${CMAKE_CXX_STANDARD}")
-message(STATUS "  Build Type: ${CMAKE_BUILD_TYPE}")
-message(STATUS "  Install Prefix: ${CMAKE_INSTALL_PREFIX}")
-message(STATUS "  NCurses Found: ${NCURSES_FOUND}")
+# Exe
+add_executable(Pong ${SOURCES} ${HEADERS})
+
+target_include_directories(Pong PRIVATE src/headers)
+
+# Optional: copy asset folder into build dir
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})

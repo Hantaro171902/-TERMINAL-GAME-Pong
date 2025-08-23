@@ -3,44 +3,61 @@
  * Ball entity implementation
  */
 
-#include "headers/ball.hpp"
+#include "ball.hpp"
 #include <cstdlib>
-#include <ctime>
+#include <cmath>
+#include <iostream>
 
-Ball::Ball(const Vector2D& position, double speed)
-    : GameObject(position, Vector2D(0, 0), 1, 1, "●"), m_speed(speed), m_initialPosition(position) {
-    setRandomDirection();
-}
+using namespace std;
 
-void Ball::update(double deltaTime) {
-    GameObject::update(deltaTime);
-}
 
-void Ball::onCollision(GameObject& other) {
-    // Ball collision logic will be handled in World class
-}
+void Ball::update(float deltaTime, const PongObject& paddle) {
+    _position.x += _velocityX * deltaTime;
+    _position.y += _velocityY * deltaTime;
 
-void Ball::reset() {
-    m_position = m_initialPosition;
-    setRandomDirection();
-}
+    _hasBounced = false;
 
-void Ball::reverseX() {
-    m_velocity.x = -m_velocity.x;
-}
-
-void Ball::reverseY() {
-    m_velocity.y = -m_velocity.y;
-}
-
-void Ball::setRandomDirection() {
-    // Set random direction with constant speed
-    double angle = (rand() % 360) * 3.14159 / 180.0;
-    m_velocity.x = m_speed * cos(angle);
-    m_velocity.y = m_speed * sin(angle);
-    
-    // Ensure minimum horizontal movement
-    if (abs(m_velocity.x) < 0.3) {
-        m_velocity.x = (m_velocity.x >= 0) ? 0.3 : -0.3;
+    // bounce off top
+    if (_position.y <= 1 && _velocityY < 0) {
+        _velocityY *= -(1 + _acceleration);
+        _hasBounced = true;
     }
+    // bounce off bottom
+    if (_position.y >= _windowLimitY - 2 && _velocityY > 0) {
+        _velocityY *= -(1 + _acceleration);
+        _hasBounced = true;
+    }
+
+    // paddle collision (assume left paddle)
+    XYPosition paddlePos = paddle.getPosition();
+    int paddleTop = paddlePos.y;
+    int paddleBottom = paddlePos.y + paddle.getLength();
+
+    if ((int)std::round(_position.x) <= paddlePos.x + paddle.getThickness() &&
+        _velocityX < 0 &&
+        (int)std::round(_position.y) >= paddleTop &&
+        (int)std::round(_position.y) <= paddleBottom) {
+
+        _velocityX *= -(1 + _acceleration);
+        _hasBounced = true;
+    }
+}
+
+bool Ball::hasBounced() const {
+    return _hasBounced;
+}
+
+bool Ball::isOutLeft() const {
+    return _position.x < 0;
+}
+
+bool Ball::isOutRight() const {
+    return _position.x > _windowLimitX;
+}
+
+void Ball::resetVelocity() {
+    _velocityX = _startVelocityX;
+    _velocityY = _startVelocityY;
+    // _acceleration = 0;
+    // _hasBounced = false;
 }

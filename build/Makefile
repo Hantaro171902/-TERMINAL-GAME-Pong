@@ -85,51 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build/CMakeFiles /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/build//CMakeFiles/progress.marks
@@ -162,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named pong
+# Target rules for targets named Pong
 
 # Build rule for target.
-pong: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 pong
-.PHONY : pong
+Pong: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Pong
+.PHONY : Pong
 
 # fast build rule for target.
-pong/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/build
-.PHONY : pong/fast
+Pong/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/build
+.PHONY : Pong/fast
 
 src/ball.o: src/ball.cpp.o
 .PHONY : src/ball.o
 
 # target to build an object file
 src/ball.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/ball.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/ball.cpp.o
 .PHONY : src/ball.cpp.o
 
 src/ball.i: src/ball.cpp.i
@@ -187,7 +142,7 @@ src/ball.i: src/ball.cpp.i
 
 # target to preprocess a source file
 src/ball.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/ball.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/ball.cpp.i
 .PHONY : src/ball.cpp.i
 
 src/ball.s: src/ball.cpp.s
@@ -195,7 +150,7 @@ src/ball.s: src/ball.cpp.s
 
 # target to generate assembly for a file
 src/ball.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/ball.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/ball.cpp.s
 .PHONY : src/ball.cpp.s
 
 src/game.o: src/game.cpp.o
@@ -203,7 +158,7 @@ src/game.o: src/game.cpp.o
 
 # target to build an object file
 src/game.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/game.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/game.cpp.o
 .PHONY : src/game.cpp.o
 
 src/game.i: src/game.cpp.i
@@ -211,7 +166,7 @@ src/game.i: src/game.cpp.i
 
 # target to preprocess a source file
 src/game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/game.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/game.cpp.i
 .PHONY : src/game.cpp.i
 
 src/game.s: src/game.cpp.s
@@ -219,63 +174,15 @@ src/game.s: src/game.cpp.s
 
 # target to generate assembly for a file
 src/game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/game.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/game.cpp.s
 .PHONY : src/game.cpp.s
-
-src/gameobject.o: src/gameobject.cpp.o
-.PHONY : src/gameobject.o
-
-# target to build an object file
-src/gameobject.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/gameobject.cpp.o
-.PHONY : src/gameobject.cpp.o
-
-src/gameobject.i: src/gameobject.cpp.i
-.PHONY : src/gameobject.i
-
-# target to preprocess a source file
-src/gameobject.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/gameobject.cpp.i
-.PHONY : src/gameobject.cpp.i
-
-src/gameobject.s: src/gameobject.cpp.s
-.PHONY : src/gameobject.s
-
-# target to generate assembly for a file
-src/gameobject.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/gameobject.cpp.s
-.PHONY : src/gameobject.cpp.s
-
-src/inputhandler.o: src/inputhandler.cpp.o
-.PHONY : src/inputhandler.o
-
-# target to build an object file
-src/inputhandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/inputhandler.cpp.o
-.PHONY : src/inputhandler.cpp.o
-
-src/inputhandler.i: src/inputhandler.cpp.i
-.PHONY : src/inputhandler.i
-
-# target to preprocess a source file
-src/inputhandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/inputhandler.cpp.i
-.PHONY : src/inputhandler.cpp.i
-
-src/inputhandler.s: src/inputhandler.cpp.s
-.PHONY : src/inputhandler.s
-
-# target to generate assembly for a file
-src/inputhandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/inputhandler.cpp.s
-.PHONY : src/inputhandler.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -283,7 +190,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -291,39 +198,15 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
-
-src/ncurses.o: src/ncurses.cpp.o
-.PHONY : src/ncurses.o
-
-# target to build an object file
-src/ncurses.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/ncurses.cpp.o
-.PHONY : src/ncurses.cpp.o
-
-src/ncurses.i: src/ncurses.cpp.i
-.PHONY : src/ncurses.i
-
-# target to preprocess a source file
-src/ncurses.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/ncurses.cpp.i
-.PHONY : src/ncurses.cpp.i
-
-src/ncurses.s: src/ncurses.cpp.s
-.PHONY : src/ncurses.s
-
-# target to generate assembly for a file
-src/ncurses.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/ncurses.cpp.s
-.PHONY : src/ncurses.cpp.s
 
 src/paddle.o: src/paddle.cpp.o
 .PHONY : src/paddle.o
 
 # target to build an object file
 src/paddle.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/paddle.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/paddle.cpp.o
 .PHONY : src/paddle.cpp.o
 
 src/paddle.i: src/paddle.cpp.i
@@ -331,7 +214,7 @@ src/paddle.i: src/paddle.cpp.i
 
 # target to preprocess a source file
 src/paddle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/paddle.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/paddle.cpp.i
 .PHONY : src/paddle.cpp.i
 
 src/paddle.s: src/paddle.cpp.s
@@ -339,56 +222,32 @@ src/paddle.s: src/paddle.cpp.s
 
 # target to generate assembly for a file
 src/paddle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/paddle.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/paddle.cpp.s
 .PHONY : src/paddle.cpp.s
 
-src/screen.o: src/screen.cpp.o
-.PHONY : src/screen.o
+src/pong_object.o: src/pong_object.cpp.o
+.PHONY : src/pong_object.o
 
 # target to build an object file
-src/screen.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/screen.cpp.o
-.PHONY : src/screen.cpp.o
+src/pong_object.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/pong_object.cpp.o
+.PHONY : src/pong_object.cpp.o
 
-src/screen.i: src/screen.cpp.i
-.PHONY : src/screen.i
-
-# target to preprocess a source file
-src/screen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/screen.cpp.i
-.PHONY : src/screen.cpp.i
-
-src/screen.s: src/screen.cpp.s
-.PHONY : src/screen.s
-
-# target to generate assembly for a file
-src/screen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/screen.cpp.s
-.PHONY : src/screen.cpp.s
-
-src/world.o: src/world.cpp.o
-.PHONY : src/world.o
-
-# target to build an object file
-src/world.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/world.cpp.o
-.PHONY : src/world.cpp.o
-
-src/world.i: src/world.cpp.i
-.PHONY : src/world.i
+src/pong_object.i: src/pong_object.cpp.i
+.PHONY : src/pong_object.i
 
 # target to preprocess a source file
-src/world.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/world.cpp.i
-.PHONY : src/world.cpp.i
+src/pong_object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/pong_object.cpp.i
+.PHONY : src/pong_object.cpp.i
 
-src/world.s: src/world.cpp.s
-.PHONY : src/world.s
+src/pong_object.s: src/pong_object.cpp.s
+.PHONY : src/pong_object.s
 
 # target to generate assembly for a file
-src/world.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/pong.dir/build.make CMakeFiles/pong.dir/src/world.cpp.s
-.PHONY : src/world.cpp.s
+src/pong_object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/pong_object.cpp.s
+.PHONY : src/pong_object.cpp.s
 
 # Help Target
 help:
@@ -397,39 +256,23 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... pong"
+	@echo "... Pong"
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"
 	@echo "... src/game.o"
 	@echo "... src/game.i"
 	@echo "... src/game.s"
-	@echo "... src/gameobject.o"
-	@echo "... src/gameobject.i"
-	@echo "... src/gameobject.s"
-	@echo "... src/inputhandler.o"
-	@echo "... src/inputhandler.i"
-	@echo "... src/inputhandler.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/ncurses.o"
-	@echo "... src/ncurses.i"
-	@echo "... src/ncurses.s"
 	@echo "... src/paddle.o"
 	@echo "... src/paddle.i"
 	@echo "... src/paddle.s"
-	@echo "... src/screen.o"
-	@echo "... src/screen.i"
-	@echo "... src/screen.s"
-	@echo "... src/world.o"
-	@echo "... src/world.i"
-	@echo "... src/world.s"
+	@echo "... src/pong_object.o"
+	@echo "... src/pong_object.i"
+	@echo "... src/pong_object.s"
 .PHONY : help
 
 
