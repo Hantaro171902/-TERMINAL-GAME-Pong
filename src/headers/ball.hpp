@@ -12,6 +12,6 @@ public:
     void reset(int startX, int startY);
 
 private:
-    int dx, dy; // Ball velocity
+    float dx, dy; // Ball velocity
     std::string _symbol;
 };

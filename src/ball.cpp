@@ -1,5 +1,9 @@
 #include "ball.hpp"
 #include "utils.hpp" // for console positioning
+#include "color.hpp"    // add for resetTextColor()
+#include <iostream>
+
+using namespace std;
 
 Ball::Ball(int startX, int startY, int width, int height, const std::string& symbol)
     : PongObject(startX, startY, width, height), dx(1), dy(1), _symbol(symbol) {}
@@ -11,7 +15,7 @@ void Ball::update(const PongObject& paddle1, const PongObject& paddle2, int scre
     pos.y += dy;
 
     // Top/bottom wall collision
-    if (pos.y <= 0 || pos.y + getLength() > screenHeight) {
+    if (pos.y <= 0 || pos.y + getLength() >= screenHeight - 1) {
         dy = -dy;
     }
 
@@ -37,8 +41,10 @@ void Ball::update(const PongObject& paddle1, const PongObject& paddle2, int scre
 }
 
 void Ball::render() const {
+    setTextColor(_color);
     moveCursor(pos.x, pos.y);
     std::cout << _symbol;
+    resetTextColor();
 }
 
 void Ball::reset(int startX, int startY) {
