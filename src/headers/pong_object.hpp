@@ -12,8 +12,7 @@ class PongObject {
 public:
     // length = height in rows, thickness = width in columns
     // symbol is a UTF-8 string (e.g. "█" or "●")
-    PongObject(int windowX, int windowY, int length, int thickness, const std::string& symbol = "█");
-
+    PongObject(int windowX, int windowY, int length, int thickness, const std::string& symbol = BLOCK_FULL);
     virtual ~PongObject() {}
 
     // --- geometry/state ---
@@ -21,10 +20,14 @@ public:
     void setPosition(float x, float y);
     void setWindowLimits(int maxX, int maxY);
 
-    int getLength()     const;
-    int getThickness()  const;
+    int getLength() const;
+    int getThickness() const;
     std::string getSymbol() const;
     void setSymbol(const std::string& s);
+
+    // --- position ---
+    int getX() const { return static_cast<int>(_position.x); }
+    int getY() const { return static_cast<int>(_position.y); }
 
     // --- visuals ---
     void setColor(TextColor c);

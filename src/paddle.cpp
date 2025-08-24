@@ -3,14 +3,11 @@
 
 using namespace std;
 
-Paddle::Paddle(int startX, int startY, int h, int bHeight, const std::string& symbol)
-    : PongObject(startX, startY, h, bHeight, symbol), height(h) {}
+Paddle::Paddle(int startX, int startY, int length, int thickness, const std::string& symbol)
+    : PongObject(startX, startY, length, thickness, symbol) {}
 
 void Paddle::draw() const {
-    auto pos = getPosition();
-    for (int i = 0; i < height; i++) {
-        cout << "\033[" << static_cast<int>(pos.y + i) << ";" << static_cast<int>(pos.x) << "H" << getSymbol();
-    }
+    PongObject::draw();
 }
 
 void Paddle::update(float deltaTime) {
@@ -20,13 +17,14 @@ void Paddle::update(float deltaTime) {
 
 void Paddle::moveUp() {
     auto pos = getPosition();
-    if (pos.y > 1) setPosition(pos.x, pos.y - 1);
+    setPosition(pos.x, pos.y - 1);
+    clampToBounds();
 }
 
 void Paddle::moveDown() {
     auto pos = getPosition();
-    // Use _windowLimitY from PongObject, or add a getter if needed
-    if (pos.y + height < _windowLimitY) setPosition(pos.x, pos.y + 1);
+    setPosition(pos.x, pos.y + 1);
+    clampToBounds();
 }
 
-int Paddle::getHeight() const { return height; }
+// int Paddle::getHeight() const { return height; }

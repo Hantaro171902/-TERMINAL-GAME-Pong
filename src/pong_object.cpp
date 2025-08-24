@@ -5,10 +5,10 @@
 
 using namespace std;
 
-PongObject::PongObject(int windowX, int windowY, int length, int thickness, const std::string& symbol)
-    : _windowLimitX(windowX)
-    , _windowLimitY(windowY)
-    , _position{ windowX / 2.0f, windowY / 2.0f }
+PongObject::PongObject(int startX, int startY, int length, int thickness, const std::string& symbol)
+    : _windowLimitX(0)
+    , _windowLimitY(0)
+    , _position{ static_cast<float>(startX), static_cast<float>(startY)}
     , _length(length)
     , _thickness(thickness)
     , _symbol(symbol)
@@ -62,7 +62,7 @@ void PongObject::draw() const {
 
 void PongObject::clear() const {
     for (int i = 0; i < _length; ++i) {
-        move_cursor(static_cast<int>(_position.x), static_cast<int>(_position.y) + i);
+        moveCursor(static_cast<int>(_position.x), static_cast<int>(_position.y) + i);
         for (int j = 0; j < _thickness; ++j) {
             cout << ' ';
         }
