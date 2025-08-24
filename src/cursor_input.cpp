@@ -1,15 +1,34 @@
 #include "cursor_input.hpp"
 
-InputKey getInputKey() {
-    termios oldt{}, newt{};
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
+static struct termios original_termios;
+static int original_flags;
+
+void setTerminalNonBlocking() {
+    tcgetattr(STDIN_FILENO, &original_termios);
+    original_flags = fcntl(STDIN_FILENO, F_GETFL, 0);
+
+    struct termios newt = original_termios;
     newt.c_lflag &= ~(ICANON | ECHO); // Disable canonical mode & echo
     tcsetattr(STDIN_FILENO, TCSANOW, &newt);
 
+    fcntl(STDIN_FILENO, F_SETFL, original_flags | O_NONBLOCK);
+}
+
+void resetTerminalSettings() {
+    tcsetattr(STDIN_FILENO, TCSANOW, &original_termios);
+    fcntl(STDIN_FILENO, F_SETFL, original_flags);
+}
+
+InputKey getInputKey() {
+    // termios oldt{}, newt{};
+    // tcgetattr(STDIN_FILENO, &oldt);
+    // newt = oldt;
+    // newt.c_lflag &= ~(ICANON | ECHO); // Disable canonical mode & echo
+    // tcsetattr(STDIN_FILENO, TCSANOW, &newt);
+
     // Non-blocking
-    int oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-    fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
+    // int oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
+    // fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
 
     InputKey key = InputKey::NONE;
     char ch;
@@ -46,9 +65,9 @@ InputKey getInputKey() {
         }
     }
 
-    // Restore terminal settings
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-    fcntl(STDIN_FILENO, F_SETFL, oldf);
+    // // Restore terminal settings
+    // tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
+    // fcntl(STDIN_FILENO, F_SETFL, oldf);
 
     return key;
 }

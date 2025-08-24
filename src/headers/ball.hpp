@@ -1,18 +1,17 @@
 #pragma once
+#include <iostream>
 #include "pong_object.hpp"
-#include <string>
 
 class Ball : public PongObject {
-private:
-    int dx, dy;
-    std::string symbol;
-
 public:
-    Ball(int startX, int startY, int bWidth, int bHeight, const std::string& symbol = "o");
+    Ball(int startX, int startY, int width, int height, const std::string& symbol);
 
-    void draw() const override;
-    void update(float deltaTime) override;
+    void update(const PongObject& paddle1, const PongObject& paddle2, int screenWidth, int screenHeight);
+    void render() const;
 
-    void bounceVertical();
-    void bounceHorizontal();
+    void reset(int startX, int startY);
+
+private:
+    int dx, dy; // Ball velocity
+    std::string _symbol;
 };

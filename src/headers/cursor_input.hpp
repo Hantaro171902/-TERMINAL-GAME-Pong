@@ -27,4 +27,7 @@ enum class InputKey {
     RIGHT_BRACKET
 };
 
+void setTerminalNonBlocking();
+void restoreTerminalBlocking();
+
 InputKey getInputKey();

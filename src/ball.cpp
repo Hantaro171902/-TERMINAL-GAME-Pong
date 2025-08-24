@@ -1,36 +1,49 @@
 #include "ball.hpp"
-#include <iostream>
+#include "utils.hpp" // for console positioning
 
-using namespace std;
+Ball::Ball(int startX, int startY, int width, int height, const std::string& symbol)
+    : PongObject(startX, startY, width, height), dx(1), dy(1), _symbol(symbol) {}
 
-Ball::Ball(int startX, int startY, int bWidth, int bHeight, const std::string& symbol)
-    : PongObject(startX, startY, bWidth, bHeight), dx(1), dy(1), symbol(symbol) {}
+// Move the ball, check collisions with paddles and screen edges
+void Ball::update(const PongObject& paddle1, const PongObject& paddle2, int screenWidth, int screenHeight) {
+    // Move
+    pos.x += dx;
+    pos.y += dy;
 
-void Ball::draw() const {
-    auto pos = getPosition();
-    cout << "\033[" << static_cast<int>(pos.y) << ";" << static_cast<int>(pos.x) << "H" << getSymbol();
-}
-
-void Ball::update(float deltaTime) {
-    auto pos = getPosition();
-    setPosition(pos.x + dx, pos.y + dy);
-
-    pos = getPosition();
-    // bounce off top/bottom edges
-    if (pos.y <= 1 || pos.y >= _windowLimitY - 1) {  
+    // Top/bottom wall collision
+    if (pos.y <= 0 || pos.y + getLength() > screenHeight) {
         dy = -dy;
     }
 
-    // bounce off left/right edges (optional, for testing)
-    if (pos.x <= 1 || pos.x >= _windowLimitX - 1) {
+    // Left paddle collision
+    if (pos.x <= paddle1.getX() + paddle1.getThickness() &&
+        pos.x >= paddle1.getX() &&
+        pos.y >= paddle1.getY() &&
+        pos.y < paddle1.getY() + paddle1.getLength()) {
         dx = -dx;
+        pos.x = paddle1.getX() + paddle1.getThickness(); // push out
     }
+
+    // Right paddle collision
+    if (pos.x + getThickness() >= paddle2.getX() &&
+        pos.x + getThickness() <= paddle2.getX() + paddle2.getThickness() &&
+        pos.y >= paddle2.getY() &&
+        pos.y < paddle2.getY() + paddle2.getLength()) {
+        dx = -dx;
+        pos.x = paddle2.getX() - getThickness(); // push out
+    }
+
+    // TODO: handle scoring if ball goes past left/right edges
 }
 
-void Ball::bounceVertical() {
-    dx = -dx;
+void Ball::render() const {
+    moveCursor(pos.x, pos.y);
+    std::cout << _symbol;
 }
 
-void Ball::bounceHorizontal() {
-    dy = -dy;
+void Ball::reset(int startX, int startY) {
+    pos.x = startX;
+    pos.y = startY;
+    dx = 1;
+    dy = 1;
 }

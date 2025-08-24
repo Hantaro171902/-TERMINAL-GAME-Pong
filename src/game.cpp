@@ -8,14 +8,14 @@ using namespace std;
 
 Game::Game(int w, int h)
     : width(w), height(h),
-      player1(w, h, 4, 1, BLOCK_FULL),        // left paddle (length=4, width=1)
-      player2(w, h, 4, 1, BLOCK_FULL),        // right paddle
-      ball(w, h, 1, 1, BALL_SOLID)            // ball (1x1)
+      player1(2, h/2 - 2, 1, 4, BLOCK_FULL),        // left paddle (length=4, width=1)
+      player2(w - 3, h/2 - 2, 1, 4, BLOCK_FULL),    // right paddle
+      ball(w/2, h/2, 1, 1, BALL_SOLID, w, h),
+      running(true)
 {
     player1.setPosition(2, h / 2 - 2);
     player2.setPosition(w - 3, h / 2 - 2);
     ball.setPosition(w / 2, h / 2);
-    running = true;
 }
 
 void Game::run() {
@@ -52,7 +52,7 @@ void Game::processInput() {
 }
 
 void Game::update() {
-    ball.update(1.0f); // dt=1 for now
+    ball.update(1.0f, player1, player2); // dt=1 for now
 
     XYPosition ballPos = ball.getPosition();
     XYPosition p1Pos = player1.getPosition();
@@ -110,6 +110,5 @@ void Game::render() {
 }
 
 void Game::resetBall() {
-    ball = Ball(width, height, 1, 1, BALL_SOLID);
-    ball.setPosition(width / 2, height / 2);
+     ball = Ball(width/2, height/2, 1, 1, BALL_SOLID, width, height);
 }
