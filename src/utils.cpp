@@ -11,16 +11,6 @@
 
 using namespace std;
 
-string formatTime(int totalSeconds) {
-    int minutes = totalSeconds / 60;
-    int seconds = totalSeconds % 60;
-
-    ostringstream oss;
-    oss << setw(2) << setfill('0') << minutes
-        << ":" << setw(2) << setfill('0') << seconds;
-    return oss.str();
-}
-
 // void play_sound(const string& path) {
 //     // Linux: use aplay or similar command
 //     string command = "aplay -q " + path + " &";
@@ -35,14 +25,9 @@ void clearTerminal() {
     cout << "\033c"; // Full reset
 }
 
-void setTextColor(int color) {
-    cout << "\033[" << color << "m";
-}
-
-void move_cursor(int x, int y) {
+void moveCursor(int x, int y) {
     cout << "\033[" << y << ";" << x << "H"; // Move cursor
 }
-
 
 void hideCursor() {
     cout << "\033[?25l";
@@ -52,55 +37,6 @@ void showCursor() {
     cout << "\033[?25h";
 }
 
-void resetCursor() {
-    cout << "\033[H";
-}
-
-void setCursorPosition(int x, int y) {
-    cout << "\033[" << y << ";" << x << "H";
-}
-
-int getch() {
-    struct termios oldt, newt;
-    int ch;
-    tcgetattr(STDIN_FILENO, &oldt);
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    ch = getchar();
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
-    return ch;
-}
-
-bool kbhit() {
-    termios oldt, newt;
-    int ch;
-    int oldf;
-
-    tcgetattr(STDIN_FILENO, &oldt); // <-- fixed here
-    newt = oldt;
-    newt.c_lflag &= ~(ICANON | ECHO);
-    tcsetattr(STDIN_FILENO, TCSANOW, &newt);
-    oldf = fcntl(STDIN_FILENO, F_GETFL, 0);
-    fcntl(STDIN_FILENO, F_SETFL, oldf | O_NONBLOCK);
-
-    ch = getchar();
-
-    tcsetattr(STDIN_FILENO, TCSANOW, &oldt); // <-- also fixed here
-    fcntl(STDIN_FILENO, F_SETFL, oldf);
-
-    if (ch != EOF) {
-        ungetc(ch, stdin);
-        return true;
-    }
-
-    return false;
-}
-
-// void console_size(int width, int height) {
-//     // Linux: usually can't resize terminal from code safely
-//     // Maybe print a warning or leave empty
-// }
 
 void sleep_ms(int ms) {
     usleep(ms * 1000);
@@ -108,6 +44,16 @@ void sleep_ms(int ms) {
 
 int random_range(int min, int max) {
     return rand() % (max - min + 1) + min;
+}
+
+string formatTime(int totalSeconds) {
+    int minutes = totalSeconds / 60;
+    int seconds = totalSeconds % 60;
+
+    ostringstream oss;
+    oss << setw(2) << setfill('0') << minutes
+        << ":" << setw(2) << setfill('0') << seconds;
+    return oss.str();
 }
 
 // Box drawing characters

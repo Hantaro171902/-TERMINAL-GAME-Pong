@@ -3,26 +3,25 @@
 
 #include <iostream>
 #include <string>
+#include "color.hpp"
 
+// Terminal manipulation functions
 void clearScreen();
 void clearTerminal(); // Full terminal reset
 
-void setTextColor(int color);
+// void setTextColor(int color);
+
+// Cursor visibility
 void hideCursor();
 void showCursor();
-void resetCursor();
-void setCursorPosition(int x, int y);
+void moveCursor(int x, int y);
 
-int getch();    // For key input
-bool kbhit();   // For non-blocking keyboard input
 
-void console_size(int width, int height);
 void sleep_ms(int ms);
 int random_range(int min, int max);
 std::string formatTime(int totalSeconds);
 
-void move_cursor(int x, int y);
-void play_sound(const std::string& path);
+// void play_sound(const std::string& path);
 
 
 // Box drawing characters (UTF-8)
@@ -54,7 +53,7 @@ extern const char SYMBOL_DOUBLE_INTERSECT[];
 extern const char BLOCK_FULL[];
 extern const char BLOCK_HALF[];
 
-
+// Ball
 extern const char* BALL_SOLID;   // ●
 extern const char* BALL_HOLLOW;  // ○
 extern const char* BALL_BULLSEYE; // ◎ (optional, looks cool)
