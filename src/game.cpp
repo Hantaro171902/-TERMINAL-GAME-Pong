@@ -9,18 +9,18 @@
 using namespace std;
 
 Game::Game(int w, int h)
-    : width(w), height(h),
-      player1(2, h/2 - 2, 4, 1, BLOCK_FULL),        // left paddle (length=4, width=1)
-      player2(w - 3, h/2 - 2, 4, 1, BLOCK_FULL),    // right paddle
-      ball(w/2, h/2, 1, 1, BALL_SOLID),
-      running(true)
+    : width(w)
+    , height(h)
+    , player1(2, h / 2 - 2, 4, 1, BLOCK_FULL)
+    , player2(w - 3, h / 2 - 2, 4, 1, BLOCK_FULL)
+    , ball(w / 2, h / 2, 1, 1, BALL_SOLID)
 {
     player1.setWindowLimits(width, height);
     player2.setWindowLimits(width, height);
     ball.setWindowLimits(width, height);
-
-    player1.setColor(TextColor::BRIGHT_CYAN);
-    player2.setColor(TextColor::BRIGHT_BLUE);
+    
+    player1.setColor(TextColor::BRIGHT_BLUE);
+    player2.setColor(TextColor::BRIGHT_CYAN);
     ball.setColor(TextColor::BRIGHT_YELLOW);
 
     clearScreen();
@@ -39,7 +39,7 @@ void Game::run() {
         processInput();
         update();
         render();
-        this_thread::sleep_for(chrono::milliseconds(50)); // ~20 fps
+        this_thread::sleep_for(chrono::milliseconds(50));
     }
 }
 
@@ -68,11 +68,9 @@ void Game::processInput() {
 }
 
 void Game::update() {
-    ball.update(player1, player2, width, height); // dt=1 for now
+    ball.updateBall(player1, player2, width, height);
 
     XYPosition ballPos = ball.getPosition();
-    // XYPosition p1Pos = player1.getPosition();
-    // XYPosition p2Pos = player2.getPosition();
 
     if (ballPos.x <= 0) {
         score2++;
@@ -84,56 +82,44 @@ void Game::update() {
 }
 
 void Game::render() {
-    clearTerminal();
 
+    clearScreen();
+    player1.clear();
+    player2.clear();
+    ball.clear();
+
+    player1.draw();
+    player2.draw();
+    ball.draw();
+
+    moveCursor(width / 2 - 2, 1);
+    setTextColor(TextColor::BRIGHT_WHITE);
+    cout << score1 << " : " << score2;
+    resetTextColor();
+    cout.flush();
+}
+
+void Game::drawBoundary() const {
     setTextColor(TextColor::GRAY);
-
-    for (int x = 0; x < width; x++) {
+    for (int x = 0; x < width; ++x) {
         moveCursor(x, 0);
-        cout << SYMBOL_DOUBLE_HORIZONTAL; // top wall
+        cout << SYMBOL_DOUBLE_HORIZONTAL;
         moveCursor(x, height - 1);
-        cout << SYMBOL_DOUBLE_HORIZONTAL; // bottom wall
+        cout << SYMBOL_DOUBLE_HORIZONTAL;
     }
-
-    for (int y = 0; y < height; y++) {
+    for (int y = 0; y < height; ++y) {
         moveCursor(0, y);
-        cout << SYMBOL_DOUBLE_VERTICAL; // left wall
+        cout << SYMBOL_DOUBLE_VERTICAL;
         moveCursor(width - 1, y);
-        cout << SYMBOL_DOUBLE_VERTICAL; // right wall
+        cout << SYMBOL_DOUBLE_VERTICAL;
         if (y > 0 && y < height - 1) {
             moveCursor(width / 2, y);
-            cout << SYMBOL_VERTICAL; // center line
+            cout << SYMBOL_VERTICAL;
         }
     }
-
     resetTextColor();
-
-    // XYPosition ballPos = ball.getPosition();
-    // XYPosition p1Pos = player1.getPosition();
-    // XYPosition p2Pos = player2.getPosition();
-
-    // for (int y = 0; y < height; y++) {
-    //     for (int x = 0; x < width; x++) {
-    //         if (y == 0 || y == height - 1) {
-    //             cout << "#"; // top/bottom walls
-    //         } else if (x == 0 || x == width - 1) {
-    //             cout << "#"; // left/right walls
-    //         } else if (x == (int)ballPos.x && y == (int)ballPos.y) {
-    //             cout << "O"; // ball
-    //         } else if (x == (int)p1Pos.x &&
-    //                    y >= (int)p1Pos.y && y < (int)p1Pos.y + player1.getLength()) {
-    //             cout << "|"; // player 1 paddle
-    //         } else if (x == (int)p2Pos.x &&
-    //                    y >= (int)p2Pos.y && y < (int)p2Pos.y + player2.getLength()) {
-    //             cout << "|"; // player 2 paddle
-    //         } else {
-    //             cout << " ";
-    //         }
-    //     }
-    //     cout << "\n";
-    // }
 }
 
 void Game::resetBall() {
-     ball.reset(width / 2, height / 2);
+    ball.reset(width / 2, height / 2);
 }

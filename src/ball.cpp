@@ -1,55 +1,55 @@
 #include "ball.hpp"
-#include "utils.hpp" // for console positioning
-#include "color.hpp"    // add for resetTextColor()
+#include "utils.hpp"
+#include "color.hpp"
 #include <iostream>
 
-using namespace std;
+Ball::Ball(int startX, int startY, int width, int height, const std::string& symbol)
+    : PongObject(startX, startY, width, height, symbol), dx(1), dy(1), _symbol(symbol) {}
 
-Ball::Ball(int startX, int startY, int width, int height, const string& symbol)
-    : PongObject(startX, startY, width, height), dx(1), dy(1), _symbol(symbol) {}
+// A separate method for the game logic.
+void Ball::updateBall(const PongObject& paddle1, const PongObject& paddle2, int screenWidth, int screenHeight) {
+    _position.x += dx;
+    _position.y += dy;
 
-// Move the ball, check collisions with paddles and screen edges
-void Ball::update(const PongObject& paddle1, const PongObject& paddle2, int screenWidth, int screenHeight) {
-    // Move
-    pos.x += dx;
-    pos.y += dy;
-
-    // Top/bottom wall collision
-    if (pos.y <= 0 || pos.y + getLength() >= screenHeight - 1) {
+    if (_position.y <= 0 || _position.y + getLength() > screenHeight) {
         dy = -dy;
     }
-
+    
     // Left paddle collision
-    if (pos.x <= paddle1.getX() + paddle1.getThickness() &&
-        pos.x >= paddle1.getX() &&
-        pos.y >= paddle1.getY() &&
-        pos.y < paddle1.getY() + paddle1.getLength()) {
+    if (_position.x <= paddle1.getX() + paddle1.getThickness() &&
+        _position.x >= paddle1.getX() &&
+        _position.y >= paddle1.getY() &&
+        _position.y < paddle1.getY() + paddle1.getLength()) {
         dx = -dx;
-        pos.x = paddle1.getX() + paddle1.getThickness(); // push out
+        _position.x = paddle1.getX() + paddle1.getThickness();
     }
 
     // Right paddle collision
-    if (pos.x + getThickness() >= paddle2.getX() &&
-        pos.x + getThickness() <= paddle2.getX() + paddle2.getThickness() &&
-        pos.y >= paddle2.getY() &&
-        pos.y < paddle2.getY() + paddle2.getLength()) {
+    if (_position.x + getThickness() >= paddle2.getX() &&
+        _position.x + getThickness() <= paddle2.getX() + paddle2.getThickness() &&
+        _position.y >= paddle2.getY() &&
+        _position.y < paddle2.getY() + paddle2.getLength()) {
         dx = -dx;
-        pos.x = paddle2.getX() - getThickness(); // push out
+        _position.x = paddle2.getX() - getThickness();
     }
+}
 
-    // TODO: handle scoring if ball goes past left/right edges
+// Overridden update method.
+void Ball::update(float deltaTime) {
+    // This method is now empty because all the logic is in updateBall.
+    // The compiler will no longer complain about the virtual function being hidden.
 }
 
 void Ball::render() const {
     setTextColor(_color);
-    moveCursor(pos.x, pos.y);
-    cout << _symbol;
+    moveCursor(static_cast<int>(_position.x), static_cast<int>(_position.y));
+    std::cout << _symbol;
     resetTextColor();
 }
 
 void Ball::reset(int startX, int startY) {
-    pos.x = startX;
-    pos.y = startY;
+    _position.x = static_cast<float>(startX);
+    _position.y = static_cast<float>(startY);
     dx = 1;
     dy = 1;
 }

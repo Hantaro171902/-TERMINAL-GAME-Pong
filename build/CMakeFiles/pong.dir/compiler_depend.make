@@ -475,6 +475,7 @@ CMakeFiles/Pong.dir/src/game.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/c++/13/bits/char_traits.h \
   /usr/include/c++/13/bits/charconv.h \
   /usr/include/c++/13/bits/chrono.h \
+  /usr/include/c++/13/bits/codecvt.h \
   /usr/include/c++/13/bits/concept_check.h \
   /usr/include/c++/13/bits/cpp_type_traits.h \
   /usr/include/c++/13/bits/cxxabi_forced.h \
@@ -490,8 +491,11 @@ CMakeFiles/Pong.dir/src/game.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/c++/13/bits/istream.tcc \
   /usr/include/c++/13/bits/locale_classes.h \
   /usr/include/c++/13/bits/locale_classes.tcc \
+  /usr/include/c++/13/bits/locale_conv.h \
   /usr/include/c++/13/bits/locale_facets.h \
   /usr/include/c++/13/bits/locale_facets.tcc \
+  /usr/include/c++/13/bits/locale_facets_nonio.h \
+  /usr/include/c++/13/bits/locale_facets_nonio.tcc \
   /usr/include/c++/13/bits/localefwd.h \
   /usr/include/c++/13/bits/memory_resource.h \
   /usr/include/c++/13/bits/memoryfwd.h \
@@ -504,12 +508,14 @@ CMakeFiles/Pong.dir/src/game.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/c++/13/bits/postypes.h \
   /usr/include/c++/13/bits/predefined_ops.h \
   /usr/include/c++/13/bits/ptr_traits.h \
+  /usr/include/c++/13/bits/quoted_string.h \
   /usr/include/c++/13/bits/range_access.h \
   /usr/include/c++/13/bits/refwrap.h \
   /usr/include/c++/13/bits/requires_hosted.h \
   /usr/include/c++/13/bits/shared_ptr.h \
   /usr/include/c++/13/bits/shared_ptr_atomic.h \
   /usr/include/c++/13/bits/shared_ptr_base.h \
+  /usr/include/c++/13/bits/sstream.tcc \
   /usr/include/c++/13/bits/std_abs.h \
   /usr/include/c++/13/bits/std_thread.h \
   /usr/include/c++/13/bits/stl_algobase.h \
@@ -553,11 +559,13 @@ CMakeFiles/Pong.dir/src/game.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/c++/13/ext/string_conversions.h \
   /usr/include/c++/13/ext/type_traits.h \
   /usr/include/c++/13/initializer_list \
+  /usr/include/c++/13/iomanip \
   /usr/include/c++/13/ios \
   /usr/include/c++/13/iosfwd \
   /usr/include/c++/13/iostream \
   /usr/include/c++/13/istream \
   /usr/include/c++/13/limits \
+  /usr/include/c++/13/locale \
   /usr/include/c++/13/memory \
   /usr/include/c++/13/new \
   /usr/include/c++/13/ostream \
@@ -565,6 +573,7 @@ CMakeFiles/Pong.dir/src/game.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/c++/13/pstl/glue_memory_defs.h \
   /usr/include/c++/13/pstl/pstl_config.h \
   /usr/include/c++/13/ratio \
+  /usr/include/c++/13/sstream \
   /usr/include/c++/13/stdexcept \
   /usr/include/c++/13/streambuf \
   /usr/include/c++/13/string \
@@ -580,6 +589,7 @@ CMakeFiles/Pong.dir/src/game.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/fcntl.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
+  /usr/include/libintl.h \
   /usr/include/linux/close_range.h \
   /usr/include/linux/errno.h \
   /usr/include/linux/falloc.h \
@@ -700,7 +710,9 @@ CMakeFiles/Pong.dir/src/game.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/x86_64-linux-gnu/c++/13/bits/error_constants.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr-default.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/gthr.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h \
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
+  /usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
   /usr/include/x86_64-linux-gnu/sys/cdefs.h \
@@ -799,6 +811,7 @@ CMakeFiles/Pong.dir/src/main.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/c++/13/cerrno \
   /usr/include/c++/13/chrono \
   /usr/include/c++/13/clocale \
+  /usr/include/c++/13/csignal \
   /usr/include/c++/13/cstddef \
   /usr/include/c++/13/cstdint \
   /usr/include/c++/13/cstdio \
@@ -850,6 +863,7 @@ CMakeFiles/Pong.dir/src/main.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/locale.h \
   /usr/include/pthread.h \
   /usr/include/sched.h \
+  /usr/include/signal.h \
   /usr/include/stdc-predef.h \
   /usr/include/stdint.h \
   /usr/include/stdio.h \
@@ -887,6 +901,19 @@ CMakeFiles/Pong.dir/src/main.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/x86_64-linux-gnu/bits/select.h \
   /usr/include/x86_64-linux-gnu/bits/select2.h \
   /usr/include/x86_64-linux-gnu/bits/setjmp.h \
+  /usr/include/x86_64-linux-gnu/bits/sigaction.h \
+  /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
+  /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
+  /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
+  /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
+  /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
+  /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
+  /usr/include/x86_64-linux-gnu/bits/sigstack.h \
+  /usr/include/x86_64-linux-gnu/bits/sigstksz.h \
+  /usr/include/x86_64-linux-gnu/bits/sigthread.h \
+  /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
   /usr/include/x86_64-linux-gnu/bits/stat.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-intn.h \
   /usr/include/x86_64-linux-gnu/bits/stdint-least.h \
@@ -924,18 +951,25 @@ CMakeFiles/Pong.dir/src/main.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__mbstate_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/clock_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/clockid_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/error_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
+  /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_FILE.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_sched_param.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timespec.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h \
   /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h \
@@ -972,6 +1006,7 @@ CMakeFiles/Pong.dir/src/main.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++
   /usr/include/x86_64-linux-gnu/sys/single_threaded.h \
   /usr/include/x86_64-linux-gnu/sys/ttydefaults.h \
   /usr/include/x86_64-linux-gnu/sys/types.h \
+  /usr/include/x86_64-linux-gnu/sys/ucontext.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h \
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h
@@ -1389,6 +1424,7 @@ CMakeFiles/Pong.dir/src/pong_object.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
 
 CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/utils.cpp \
+  /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/color.hpp \
   /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/utils.hpp \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
@@ -1629,22 +1665,6 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
   /usr/lib/gcc/x86_64-linux-gnu/13/include/stddef.h
 
 
-/usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h:
-
-/usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h:
-
-/usr/include/libintl.h:
-
-/usr/include/c++/13/locale:
-
-/usr/include/c++/13/iomanip:
-
-/usr/include/c++/13/bits/sstream.tcc:
-
-/usr/include/c++/13/bits/locale_facets_nonio.tcc:
-
-/usr/include/c++/13/bits/codecvt.h:
-
 /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/utils.cpp:
 
 /usr/include/c++/13/vector:
@@ -1665,9 +1685,45 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/paddle.cpp:
 
+/usr/include/x86_64-linux-gnu/sys/ucontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/stack_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigval_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/ss_flags.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstack.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigcontext.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigaction.h:
+
+/usr/include/c++/13/csignal:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stdint.h:
 
+/usr/include/x86_64-linux-gnu/c++/13/bits/time_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/13/bits/messages_members.h:
+
 /usr/include/x86_64-linux-gnu/bits/stdint-least.h:
+
+/usr/include/libintl.h:
 
 /usr/include/c++/13/thread:
 
@@ -1679,9 +1735,29 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/c++/13/memory:
 
+/usr/include/c++/13/locale:
+
+/usr/include/signal.h:
+
+/usr/include/c++/13/iomanip:
+
+/usr/include/c++/13/ext/concurrence.h:
+
+/usr/include/c++/13/ext/aligned_buffer.h:
+
+/usr/include/c++/13/ctime:
+
+/usr/include/c++/13/cstdint:
+
+/usr/include/c++/13/chrono:
+
 /usr/include/x86_64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/c++/13/limits:
+
+/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/c++/13/pstl/glue_memory_defs.h:
 
@@ -1717,8 +1793,6 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/locale.h:
 
-/usr/include/c++/13/ext/aligned_buffer.h:
-
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
 
 /usr/include/stdint.h:
@@ -1740,10 +1814,6 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 /usr/include/c++/13/ostream:
 
 /usr/include/c++/13/bits/streambuf_iterator.h:
-
-/usr/include/c++/13/bits/locale_facets_nonio.h:
-
-/usr/include/x86_64-linux-gnu/bits/confname.h:
 
 /usr/include/c++/13/new:
 
@@ -1771,9 +1841,9 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/c++/13/cstdlib:
 
-/usr/include/c++/13/cstdint:
-
 /usr/include/c++/13/cstdio:
+
+/usr/include/x86_64-linux-gnu/bits/signum-arch.h:
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
@@ -1830,10 +1900,6 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 /usr/include/x86_64-linux-gnu/bits/termios-c_lflag.h:
 
 /usr/include/c++/13/bits/exception_ptr.h:
-
-/usr/include/c++/13/bits/locale_conv.h:
-
-/usr/include/c++/13/bits/istream.tcc:
 
 /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/ball.hpp:
 
@@ -1899,6 +1965,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/c++/13/bits/move.h:
 
+/usr/include/x86_64-linux-gnu/bits/sigthread.h:
+
 /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/utils.hpp:
 
 /usr/include/c++/13/bits/ostream.tcc:
@@ -1943,6 +2011,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/c++/13/bits/stl_iterator_base_funcs.h:
 
+/usr/include/x86_64-linux-gnu/bits/signum-generic.h:
+
 /usr/include/c++/13/iosfwd:
 
 /usr/include/c++/13/bits/predefined_ops.h:
@@ -1950,6 +2020,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 /usr/include/x86_64-linux-gnu/bits/unistd.h:
 
 /usr/include/c++/13/cwctype:
+
+/usr/include/c++/13/bits/sstream.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/termios-c_cflag.h:
 
@@ -2009,10 +2081,6 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/x86_64-linux-gnu/bits/stdio2-decl.h:
 
-/usr/include/c++/13/bits/quoted_string.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdio2.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/FILE.h:
 
 /usr/include/x86_64-linux-gnu/bits/termios-c_iflag.h:
@@ -2036,6 +2104,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 /usr/include/x86_64-linux-gnu/bits/fcntl-linux.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h:
 
 /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/headers/paddle.hpp:
 
@@ -2113,6 +2183,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_base.h:
 
+/usr/include/x86_64-linux-gnu/bits/signal_ext.h:
+
 /usr/include/c++/13/bits/char_traits.h:
 
 /usr/include/x86_64-linux-gnu/c++/13/bits/ctype_inline.h:
@@ -2137,6 +2209,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/x86_64-linux-gnu/sys/types.h:
 
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
+
 /usr/lib/gcc/x86_64-linux-gnu/13/include/stdarg.h:
 
 /mnt/d/DATA/Documents/Visual-Studio-2019/C++/ascii-game/pong/src/cursor_input.cpp:
@@ -2147,8 +2221,6 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/linux/falloc.h:
 
-/usr/include/c++/13/ext/concurrence.h:
-
 /usr/include/c++/13/bits/locale_classes.h:
 
 /usr/include/x86_64-linux-gnu/bits/timesize.h:
@@ -2158,6 +2230,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 /usr/include/x86_64-linux-gnu/bits/getopt_core.h:
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
+
+/usr/include/x86_64-linux-gnu/bits/sigstksz.h:
 
 /usr/include/x86_64-linux-gnu/bits/stat.h:
 
@@ -2172,6 +2246,8 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 /usr/include/x86_64-linux-gnu/bits/termios-misc.h:
 
 /usr/include/x86_64-linux-gnu/bits/termios.h:
+
+/usr/include/c++/13/bits/locale_facets_nonio.tcc:
 
 /usr/include/c++/13/bits/stl_vector.h:
 
@@ -2191,9 +2267,23 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 
 /usr/include/c++/13/backward/auto_ptr.h:
 
+/usr/include/c++/13/bits/codecvt.h:
+
+/usr/include/c++/13/bits/istream.tcc:
+
+/usr/include/c++/13/bits/locale_conv.h:
+
+/usr/include/x86_64-linux-gnu/bits/confname.h:
+
+/usr/include/c++/13/bits/locale_facets_nonio.h:
+
 /usr/include/c++/13/bits/std_abs.h:
 
 /usr/include/c++/13/bits/parse_numbers.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:
+
+/usr/include/c++/13/bits/quoted_string.h:
 
 /usr/include/c++/13/bits/shared_ptr_atomic.h:
 
@@ -2204,11 +2294,3 @@ CMakeFiles/Pong.dir/src/utils.cpp.o: /mnt/d/DATA/Documents/Visual-Studio-2019/C+
 /usr/include/c++/13/bits/new_allocator.h:
 
 /usr/include/c++/13/bits/stl_uninitialized.h:
-
-/usr/include/c++/13/chrono:
-
-/usr/include/c++/13/ctime:
-
-/usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/c++/13/limits:

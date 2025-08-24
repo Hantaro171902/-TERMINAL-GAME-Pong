@@ -50,7 +50,7 @@ void PongObject::draw() const {
     // draw as a rectangle of (_length rows) × (_thickness columns)
     for (int i = 0; i < _length; ++i) {
         // NOTE: move_cursor expects (x=column, y=row)
-        move_cursor(static_cast<int>(_position.x), static_cast<int>(_position.y) + i);
+        moveCursor(static_cast<int>(_position.x), static_cast<int>(_position.y) + i);
         for (int j = 0; j < _thickness; ++j) {
             cout << _symbol;
         }

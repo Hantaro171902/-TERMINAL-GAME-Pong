@@ -14,7 +14,7 @@ void setTerminalNonBlocking() {
     fcntl(STDIN_FILENO, F_SETFL, original_flags | O_NONBLOCK);
 }
 
-void resetTerminalSettings() {
+void restoreTerminalBlocking() {
     tcsetattr(STDIN_FILENO, TCSANOW, &original_termios);
     fcntl(STDIN_FILENO, F_SETFL, original_flags);
 }

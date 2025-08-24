@@ -32,6 +32,11 @@ private:
     Paddle player2;
     Ball ball;
 
+    // Settings
+    const int width;
+    const int height;
+    bool running = true;
+
     // Score
     int score1 = 0;
     int score2 = 0;
