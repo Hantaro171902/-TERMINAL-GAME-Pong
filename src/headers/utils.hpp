@@ -5,6 +5,10 @@
 #include <string>
 #include "color.hpp"
 
+// template <typename T> int signum(T val) {
+//     return (T(0) < val) - (val < T(0));
+// }
+
 // Terminal manipulation functions
 void clearScreen();
 void clearTerminal(); // Full terminal reset

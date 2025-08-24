@@ -129,6 +129,30 @@ Pong/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/build
 .PHONY : Pong/fast
 
+src/animation_loading.o: src/animation_loading.cpp.o
+.PHONY : src/animation_loading.o
+
+# target to build an object file
+src/animation_loading.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/animation_loading.cpp.o
+.PHONY : src/animation_loading.cpp.o
+
+src/animation_loading.i: src/animation_loading.cpp.i
+.PHONY : src/animation_loading.i
+
+# target to preprocess a source file
+src/animation_loading.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/animation_loading.cpp.i
+.PHONY : src/animation_loading.cpp.i
+
+src/animation_loading.s: src/animation_loading.cpp.s
+.PHONY : src/animation_loading.s
+
+# target to generate assembly for a file
+src/animation_loading.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Pong.dir/build.make CMakeFiles/Pong.dir/src/animation_loading.cpp.s
+.PHONY : src/animation_loading.cpp.s
+
 src/ball.o: src/ball.cpp.o
 .PHONY : src/ball.o
 
@@ -330,6 +354,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Pong"
+	@echo "... src/animation_loading.o"
+	@echo "... src/animation_loading.i"
+	@echo "... src/animation_loading.s"
 	@echo "... src/ball.o"
 	@echo "... src/ball.i"
 	@echo "... src/ball.s"

@@ -23,6 +23,7 @@ set(SOURCES
     src/cursor_input.cpp
     src/utils.cpp
     src/color.cpp
+    src/animation_loading.cpp
 )
 
 set(HEADERS
@@ -33,7 +34,7 @@ set(HEADERS
     src/headers/cursor_input.hpp
     src/headers/utils.hpp
     src/headers/color.hpp
-    # src/headers/pong.hpp
+    src/headers/animation_loading.hpp
 )
 
 # Exe

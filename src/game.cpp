@@ -1,6 +1,7 @@
 #include "game.hpp"
 #include "utils.hpp"
 #include "color.hpp"
+#include "animation_loading.hpp"
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -24,7 +25,7 @@ Game::Game(int w, int h)
     player2.setXLimits(width / 2 + 1, width - 2);
     
     player1.setColor(TextColor::BRIGHT_BLUE);
-    player2.setColor(TextColor::BRIGHT_CYAN);
+    player2.setColor(TextColor::BRIGHT_RED);
     ball.setColor(TextColor::BRIGHT_YELLOW);
 
     clearScreen();
@@ -38,8 +39,10 @@ Game::~Game() {
 }
 
 void Game::run() {
+    animLoading(); // Show loading animation
      // Time tracking for smoother movement
     auto prevTime = chrono::high_resolution_clock::now();
+    // drawTitle();
     drawBoundary();
 
     while (running) {
@@ -155,6 +158,21 @@ void Game::render() {
     cout << score1 << " : " << score2;
     resetTextColor();
     cout.flush();
+}
+
+void Game::drawTitle() const {
+    // moveCursor to a position above the game board
+    moveCursor(width / 2 - 5, 2); 
+    setTextColor(TextColor::BRIGHT_YELLOW);
+    cout << R"(
+             _____             
+            |  _  |___ ___ ___ 
+            |   __| . |   | . |
+            |__|  |___|_|_|_  |
+                          |___|
+    )";
+
+    resetTextColor();
 }
 
 void Game::drawBoundary() const {

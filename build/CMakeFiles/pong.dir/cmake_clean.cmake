@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Pong.dir/src/animation_loading.cpp.o"
+  "CMakeFiles/Pong.dir/src/animation_loading.cpp.o.d"
   "CMakeFiles/Pong.dir/src/ball.cpp.o"
   "CMakeFiles/Pong.dir/src/ball.cpp.o.d"
   "CMakeFiles/Pong.dir/src/color.cpp.o"

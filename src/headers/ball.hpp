@@ -18,6 +18,8 @@ public:
     void reset(int startX, int startY);
 
 private:
-    float dx, dy; // Ball velocity
+    float dx = 0.0f; // Ball velocity
+    float dy = 0.0f;
+    // const float deceleration = 0.01f;   
     std::string _symbol;
 };

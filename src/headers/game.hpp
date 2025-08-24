@@ -12,6 +12,7 @@
 #include "paddle.hpp"
 #include "cursor_input.hpp"
 #include "utils.hpp"
+#include "animation_loading.hpp"
 
 class Game {
 public:
@@ -27,7 +28,7 @@ private:
     void render();
     void resetBall();
     void drawBoundary() const;
-    
+    void drawTitle() const;
 
     // Game objects
     Paddle player1;

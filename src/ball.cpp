@@ -8,10 +8,25 @@ Ball::Ball(int startX, int startY, int width, int height, const std::string& sym
 
 // A separate method for the game logic.
 void Ball::updateBall(const PongObject& paddle1, const PongObject& paddle2, int screenWidth, int screenHeight) {
+     // Apply deceleration to both horizontal and vertical velocities
+    // if (abs(dx) > 0.01f) {
+    //     dx -= signum(dx) * deceleration;
+    // } else {
+    //     dx = 0;
+    // }
+
+    // if (abs(dy) > 0.01f) {
+    //     dy -= signum(dy) * deceleration;
+    // } else {
+    //     dy = 0;
+    // }
+
+    // dx = -30.0f;
+    // dy = 30.0f;
+
     _position.x += dx;
     _position.y += dy;
     
-
     // Check for collision with top or bottom walls
     if (_position.y <= 1 || _position.y + getLength() >= screenHeight - 1) {
         dy = -dy;

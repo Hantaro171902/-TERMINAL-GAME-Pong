@@ -23,22 +23,22 @@ void Paddle::moveUp() {
     // auto pos = getPosition();
     // setPosition(pos.x, pos.y - 1);
     // clampToBounds();
-    setVelocityY(-20.0f);
+    setVelocityY(-60.0f);
 }
 
 void Paddle::moveDown() {
     // auto pos = getPosition();
     // setPosition(pos.x, pos.y + 1);
     // clampToBounds();
-    setVelocityY(20.0f);
+    setVelocityY(60.0f);
 }
 
 void Paddle::moveLeft() {
-    setVelocityX(-20.0f);
+    setVelocityX(-60.0f);
 }
 
 void Paddle::moveRight() {
-    setVelocityX(20.0f);
+    setVelocityX(60.0f);
 }
 
 void Paddle::setVelocityY(float y) {
