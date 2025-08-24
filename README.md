@@ -1,74 +1,82 @@
-# Pong Game
+# 🏓 Pong (ASCII Edition)
 
-A clean, object-oriented implementation of the classic Pong game in C++ for the terminal.
+✨ A retro Pong game brought to life in your terminal. Written in C++ with an OOP twist and ANSI-powered visuals.
+✅ A clean, object-oriented implementation of the classic Pong game in C++ for the terminal.
 
-## Features
+---
 
-- **Clean OOP Design**: Well-structured classes with clear separation of concerns
-- **Terminal Graphics**: ASCII-based rendering with smooth animations
-- **AI Opponent**: Computer-controlled second player with intelligent paddle movement
-- **Collision Detection**: Accurate physics-based collision handling
-- **Score Tracking**: Real-time score display and game over detection
-- **Cross-platform**: Works on Linux/Unix systems with terminal support
+# 📸 Preview
 
-## Project Structure
+<img width="960" height="647" alt="image" src="https://github.com/user-attachments/assets/f9835828-93af-49ef-8781-62986e7b4e54" />
 
-```
-pong/
-├── src/
-│   ├── headers/           # Header files (.hpp)
-│   │   ├── Game.hpp       # Main game controller
-│   │   ├── World.hpp      # Game world and physics
-│   │   ├── Screen.hpp     # Terminal display management
-│   │   ├── InputHandler.hpp # Keyboard input handling
-│   │   ├── GameObject.hpp # Base class for game entities
-│   │   ├── Ball.hpp       # Ball entity
-│   │   ├── Paddle.hpp     # Paddle entity
-│   │   └── Vector2D.hpp   # 2D vector mathematics
-│   ├── main.cpp           # Program entry point
-│   ├── Game.cpp           # Game implementation
-│   ├── World.cpp          # World physics implementation
-│   ├── Screen.cpp         # Terminal display implementation
-│   ├── InputHandler.cpp   # Input handling implementation
-│   ├── GameObject.cpp     # Base game object implementation
-│   ├── Ball.cpp           # Ball behavior implementation
-│   └── Paddle.cpp         # Paddle behavior implementation
-├── CMakeLists.txt         # CMake build configuration
-├── Makefile              # Make build configuration
-└── README.md             # This file
-```
+---
 
-## Class Design
+## 🎮 Features
 
-### Core Classes
+- **Classic Pong gameplay** — two paddles, one ball, infinite rivalry 🏓  
+- **Fully OOP structured:**
+  - `PongObject` → base class for shared properties (position, size, movement, rendering)
+  - `Paddle` and `Ball` extend `PongObject`, each with their own physics logic
+- **Smooth ball–paddle collision** with realistic bounce angles 🎯  
+- **Vertical & horizontal paddle movement** (not just up and down)  
+- **Clean, colorful rendering** with borders and score display 🌈  
+- **Play until 10 points for the win!** 🏆  
 
-1. **Game**: Main controller that orchestrates the entire game
-2. **World**: Manages game physics, collisions, and scoring
-3. **Screen**: Handles terminal display and rendering
-4. **InputHandler**: Processes keyboard input and key bindings
-5. **GameObject**: Base class for all game entities
-6. **Ball**: Represents the game ball with physics behavior
-7. **Paddle**: Represents player paddles with movement and AI
-8. **Vector2D**: 2D vector mathematics for positions and velocities
+---
 
-### Design Principles
+## 🧩 OOP Structure
 
-- **Single Responsibility**: Each class has a single, well-defined purpose
-- **Encapsulation**: Internal state is protected, public interfaces are clean
-- **Inheritance**: Ball and Paddle inherit from GameObject
-- **Composition**: Game contains World, Screen, and InputHandler
-- **RAII**: Proper resource management with constructors/destructors
+The game is built around **object-oriented design**:
 
-## Building the Game
+- **`PongObject` (Base Class)**  
+  Defines the common properties of all in-game objects:
+  - Position (`x`, `y`)
+  - Size (`width`, `height`)
+  - Velocity (`vx`, `vy`)
+  - `render()` & `clear()` functions
 
-### Prerequisites
+- **`Paddle` (Child Class)**  
+  Inherits from `PongObject` and adds player-controlled movement:
+  - Movement in **all directions**: up, down, left, right
+  - X/Y boundaries prevent crossing into enemy territory
 
-- C++17 compatible compiler (GCC 7+, Clang 5+, or MSVC 2017+)
-- CMake 3.10+ (optional, for CMake build)
-- Make (optional, for Makefile build)
-- Linux/Unix system with terminal support
+- **`Ball` (Child Class)**  
+  Extends `PongObject` with its own physics engine:
+  - Moves continuously with velocity
+  - Detects collisions with paddles & walls
+  - Bounces off surfaces with direction reversal
 
-### Using CMake
+This structure keeps the code **modular** and **reusable**, with physics and rendering encapsulated inside each class.
+
+---
+
+## ⚡ Physics & Collision
+
+- **Wall collisions**  
+  - The ball bounces off the **top** and **bottom** walls automatically.
+
+- **Paddle collisions**  
+  - X-direction reverses on impact  
+  - Y-direction changes slightly depending on where the ball hits the paddle (classic Pong mechanic 🎯)
+
+- **Scoring system**  
+  - If the ball crosses the **left or right boundary**, the opposite player scores a point.  
+  - First to **10 points wins!** 🏆
+
+---
+
+## 🕹️ Controls
+
+| Key       | Action (Player 1) | Action (Player 2) |
+|-----------|------------------|------------------|
+| **W / ⬆️** | Move Up           | ↑ Arrow          |
+| **S / ⬇️** | Move Down         | ↓ Arrow          |
+| **A / ⬅️** | Move Left         | ← Arrow          |
+| **D / ➡️** | Move Right        | → Arrow          |
+| **Q / ESC** | Quit Game         | Quit Game        |
+
+---
+## Using CMake
 
 ```bash
 # Create build directory
@@ -101,102 +109,6 @@ make debug
 make release
 ```
 
-### Direct Compilation
-
-```bash
-g++ -std=c++17 -Wall -Wextra -O2 -Isrc/headers \
-    src/*.cpp -o pong -lpthread
-```
-
-## How to Play
-
-### Controls
-
-- **W/S**: Move Player 1 paddle up/down
-- **ESC**: Quit the game
-- **Space**: Start the game (when prompted)
-
-### Game Rules
-
-1. Control the left paddle (Player 1) using W and S keys
-2. The right paddle (Player 2) is controlled by AI
-3. Prevent the ball from passing your paddle
-4. Score points by getting the ball past your opponent's paddle
-5. First player to reach 10 points wins
-
-### Game Features
-
-- **Realistic Physics**: Ball bounces off paddles and walls
-- **AI Opponent**: Computer player with intelligent movement
-- **Score Display**: Real-time score tracking
-- **Game Over Screen**: Winner announcement when game ends
-
-## Technical Details
-
-### Architecture
-
-The game follows a component-based architecture:
-
-```
-Game (Main Controller)
-├── World (Physics & Logic)
-│   ├── Ball
-│   ├── Paddle 1 (Player)
-│   └── Paddle 2 (AI)
-├── Screen (Rendering)
-└── InputHandler (Input)
-```
-
-### Key Features
-
-- **Frame-based Timing**: Consistent 50ms frame rate
-- **Collision Detection**: AABB collision detection for accurate physics
-- **Terminal Management**: Proper terminal setup/cleanup
-- **Non-blocking Input**: Responsive keyboard handling
-- **Memory Management**: RAII with smart pointers
-
-### Performance
-
-- **Efficient Rendering**: Double-buffered terminal output
-- **Minimal CPU Usage**: Frame-limited game loop
-- **Memory Efficient**: Smart pointer usage prevents memory leaks
-
-## Extending the Game
-
-### Adding New Features
-
-1. **Power-ups**: Extend GameObject class for power-up entities
-2. **Multiple Balls**: Modify World class to handle multiple balls
-3. **Different AI Levels**: Add difficulty settings to Paddle AI
-4. **Sound Effects**: Integrate with audio libraries
-5. **Network Multiplayer**: Add networking capabilities
-
-### Code Organization
-
-- **Headers**: All class declarations in `src/headers/`
-- **Implementation**: All class implementations in `src/`
-- **Build Systems**: Both CMake and Makefile support
-- **Documentation**: Comprehensive comments and README
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Terminal Size**: Ensure terminal is at least 80x30 characters
-2. **Permissions**: May need sudo for installation
-3. **Compiler**: Ensure C++17 support is available
-4. **Dependencies**: pthread library should be available by default
-
-### Debug Mode
-
-Build with debug symbols for troubleshooting:
-
-```bash
-make debug
-# or
-cmake -DCMAKE_BUILD_TYPE=Debug ..
-```
-
 ## License
 
 This project is open source and available under the MIT License.
@@ -209,11 +121,3 @@ This project is open source and available under the MIT License.
 4. Add tests if applicable
 5. Submit a pull request
 
-## Version History
-
-- **v1.0.0**: Initial release with basic Pong functionality
-  - Clean OOP design
-  - Terminal-based graphics
-  - AI opponent
-  - Collision detection
-  - Score tracking
