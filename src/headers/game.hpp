@@ -16,6 +16,7 @@
 class Game {
 public:
     Game(int width, int height);
+    ~Game();    // add a destructor to clean up terminal settings
     void run();
 
 private:
@@ -24,13 +25,14 @@ private:
     void update();
     void render();
     void resetBall();
+    void drawBoundary() const;
 
     // Game objects
     Paddle player1;
     Paddle player2;
     Ball ball;
 
-    // Settings
-    int width, height;
-    bool running;
+    // Score
+    int score1 = 0;
+    int score2 = 0;
 };

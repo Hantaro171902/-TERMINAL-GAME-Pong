@@ -5,7 +5,7 @@
 
 using namespace std;
 
-Ball::Ball(int startX, int startY, int width, int height, const std::string& symbol)
+Ball::Ball(int startX, int startY, int width, int height, const string& symbol)
     : PongObject(startX, startY, width, height), dx(1), dy(1), _symbol(symbol) {}
 
 // Move the ball, check collisions with paddles and screen edges
@@ -43,7 +43,7 @@ void Ball::update(const PongObject& paddle1, const PongObject& paddle2, int scre
 void Ball::render() const {
     setTextColor(_color);
     moveCursor(pos.x, pos.y);
-    std::cout << _symbol;
+    cout << _symbol;
     resetTextColor();
 }
 
