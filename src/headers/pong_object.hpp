@@ -39,7 +39,7 @@ public:
     virtual void clear() const;       // erases the object
 
     // --- helpers ---
-    void clampToBounds();             // keeps within 1..(limit-2) box
+    virtual void clampToBounds();             // keeps within 1..(limit-2) box
 
     // optional per-frame physics (no-op by default)
     virtual void update(float /*deltaTime*/) {}
